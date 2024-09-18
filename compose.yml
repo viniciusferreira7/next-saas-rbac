@@ -1,0 +1,14 @@
+services:
+  next-saas-rbac:
+    container_name: next-saas-rbac
+    image: bitnami/postgresql:latest
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRESQL_USERNAME: ${DATABASE_USERNAME}
+      POSTGRESQL_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRESQL_DATABASE: ${DATABASE_NAME}
+    volumes:
+      - next_saas_rbac_data:/bitnami/postgresql
+volumes:
+  next_saas_rbac_data:
