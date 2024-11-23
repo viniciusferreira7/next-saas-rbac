@@ -1,1 +1,1 @@
-export class BadRequest extends Error {}
+export class BadRequestError extends Error {}

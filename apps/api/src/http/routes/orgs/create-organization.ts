@@ -6,7 +6,7 @@ import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 import { createSlug } from '@/utils/create-slug'
 
-import { BadRequest } from '../_error/bad-request-error'
+import { BadRequestError } from '../_error/bad-request-error'
 
 export async function createOrganization(app: FastifyInstance) {
   app
@@ -43,7 +43,7 @@ export async function createOrganization(app: FastifyInstance) {
           })
 
           if (organizationByDomain) {
-            throw new BadRequest(
+            throw new BadRequestError(
               'Another organization with same domain already exists.',
             )
           }

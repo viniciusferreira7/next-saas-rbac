@@ -5,7 +5,7 @@ import z from 'zod'
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 
-import { BadRequest } from '../_error/bad-request-error'
+import { BadRequestError } from '../_error/bad-request-error'
 
 export async function getProfile(app: FastifyInstance) {
   app
@@ -46,7 +46,7 @@ export async function getProfile(app: FastifyInstance) {
         })
 
         if (!user) {
-          throw new BadRequest('User not found.')
+          throw new BadRequestError('User not found.')
         }
 
         return reply.status(200).send({ user })

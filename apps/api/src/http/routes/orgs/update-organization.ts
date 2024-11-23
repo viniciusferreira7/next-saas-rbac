@@ -7,7 +7,7 @@ import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
-import { BadRequest } from '../_error/bad-request-error'
+import { BadRequestError } from '../_error/bad-request-error'
 import { UnauthorizedError } from '../_error/unauthorized-error'
 
 export async function updateOrganization(app: FastifyInstance) {
@@ -41,7 +41,6 @@ export async function updateOrganization(app: FastifyInstance) {
           await request.getUserMembership(slug)
 
         const { name, domain, shouldAttachUsersByDomain } = request.body
-        console.log({ name })
 
         const { cannot } = getUserPermissions(userId, membership.role)
 
@@ -64,7 +63,7 @@ export async function updateOrganization(app: FastifyInstance) {
           })
 
           if (organizationByDomain) {
-            throw new BadRequest(
+            throw new BadRequestError(
               'Another organization with same domain already exists.',
             )
           }
