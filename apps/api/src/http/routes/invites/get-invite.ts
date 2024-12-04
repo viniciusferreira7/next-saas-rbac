@@ -18,10 +18,6 @@ export async function getInvite(app: FastifyInstance) {
         params: z.object({
           inviteId: z.string().uuid(),
         }),
-        body: z.object({
-          email: z.string().email(),
-          role: roleSchema,
-        }),
         response: {
           200: z.object({
             invite: z.object({
