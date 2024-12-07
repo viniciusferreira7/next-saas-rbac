@@ -1,29 +1,24 @@
 import { roleSchema } from '@saas/auth'
 import type { FastifyInstance } from 'fastify'
 import type { ZodTypeProvider } from 'fastify-type-provider-zod'
-import z from 'zod'
+import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
-import { getUserPermissions } from '@/utils/get-user-permissions'
 
 import { BadRequestError } from '../_error/bad-request-error'
-import { UnauthorizedError } from '../_error/unauthorized-error'
 
-export async function getInvites(app: FastifyInstance) {
+export async function getPendingInvite(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
     .get(
-      '/organization/:slug/invites',
+      '/pending-invites',
       {
         schema: {
           tags: ['invites'],
-          summary: 'Get all organization invites',
+          summary: 'Get all user pending invites',
           security: [{ bearerAuth: [] }],
-          params: z.object({
-            slug: z.string(),
-          }),
           response: {
             200: z.object({
               invites: z.array(
@@ -46,17 +41,16 @@ export async function getInvites(app: FastifyInstance) {
         },
       },
       async (request, reply) => {
-        const { slug } = request.params
         const userId = await request.getCurrentUserId()
-        const { membership, organization } =
-          await request.getUserMembership(slug)
 
-        const { cannot } = getUserPermissions(userId, membership.role)
+        const user = await prisma.user.findUnique({
+          where: {
+            id: userId,
+          },
+        })
 
-        if (cannot('get', 'Invite')) {
-          throw new UnauthorizedError(
-            `You're not allowed to get organization invites.`,
-          )
+        if (!user) {
+          throw new BadRequestError('User not found.')
         }
 
         const invites = await prisma.invite.findMany({
@@ -74,7 +68,7 @@ export async function getInvites(app: FastifyInstance) {
             },
           },
           where: {
-            organizationId: organization.id,
+            email: user.email,
           },
           orderBy: {
             createdAt: 'desc',
