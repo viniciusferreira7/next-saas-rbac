@@ -17,12 +17,13 @@ import { createAccount } from './routes/auth/create-account'
 import { getProfile } from './routes/auth/get-profile'
 import { requestPasswordRecover } from './routes/auth/request-passowrd-recover'
 import { resetPassword } from './routes/auth/reset-password'
+import { getOrganizationBilling } from './routes/billing/get-organization-billing'
 import { errorHandler } from './routes/error-handler'
 import { acceptInvite } from './routes/invites/accept-invite'
 import { createInvite } from './routes/invites/create-invite'
 import { getInvite } from './routes/invites/get-invite'
 import { getInvites } from './routes/invites/get-invites'
-import { rejectInvite, rejectInvite } from './routes/invites/reject-invite'
+import { rejectInvite } from './routes/invites/reject-invite'
 import { revokeInvite } from './routes/invites/revoke-invite'
 import { getMembers } from './routes/members/get-members'
 import { removeMember } from './routes/members/remove-member'
@@ -110,6 +111,8 @@ app.register(getInvites)
 app.register(acceptInvite)
 app.register(rejectInvite)
 app.register(revokeInvite)
+
+app.register(getOrganizationBilling)
 
 app.listen({ port: env.SERVER_PORT }).then(() => {
   console.log('HTTP server is running! 🚀')
