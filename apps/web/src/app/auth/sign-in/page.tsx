@@ -6,9 +6,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 
+import { signInWithEmailAndPassword } from './action'
+
 export default function SignInPage() {
   return (
-    <form action="" className="space-y-4">
+    <form action={signInWithEmailAndPassword} className="space-y-4">
       <div>
         <Label htmlFor="email">E-mail</Label>
         <Input id="email" name="email" type="email" />
