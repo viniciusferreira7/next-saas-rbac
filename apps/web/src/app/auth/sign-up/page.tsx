@@ -6,9 +6,13 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 
-export default function SignInPage() {
+export default function SignUpPage() {
   return (
     <form action="" className="space-y-4">
+      <div>
+        <Label htmlFor="name">Name</Label>
+        <Input id="name" name="name" />
+      </div>
       <div>
         <Label htmlFor="email">E-mail</Label>
         <Input id="email" name="email" type="email" />
@@ -16,19 +20,25 @@ export default function SignInPage() {
       <div>
         <Label htmlFor="password">Password</Label>
         <Input id="password" name="password" type="password" />
-        <Link
-          href="/auth/forgot-password"
-          className="text-xs font-medium text-foreground hover:underline">
-          Forgot your password?
-        </Link>
+      </div>
+      <div>
+        <Label htmlFor="password_confirmation">Confirm your password</Label>
+        <Input
+          id="password_confirmation"
+          name="password_confirmation"
+          type="password"
+        />
       </div>
       <Button type="submit" className="w-full">
-        Sign-in with e-mail
+        Create account
+      </Button>
+      <Button variant="link" size="sm" className="w-full" asChild>
+        <Link href="/auth/sign-in">Already register? Sign-in</Link>
       </Button>
       <Separator />
       <Button type="submit" variant="outline" className="w-full">
         <GithubSvg className="size-4 fill-foreground" />
-        Sign-in with gitHub
+        Sign-up with gitHub
       </Button>
     </form>
   )
