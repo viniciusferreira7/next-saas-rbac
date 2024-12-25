@@ -14,7 +14,7 @@ export async function signInWithPassword({
   password,
 }: SignInWithPasswordRequest): Promise<SignInWithPasswordResponse> {
   const data = await api
-    .post('session/password', {
+    .post('sessions/password', {
       json: {
         email,
         password,
