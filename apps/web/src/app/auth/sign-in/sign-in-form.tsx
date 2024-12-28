@@ -2,7 +2,7 @@
 
 import { AlertTriangle, LoaderCircle } from 'lucide-react'
 import Link from 'next/link'
-import { useActionState } from 'react'
+import { type FormEvent, useState, useTransition } from 'react'
 
 import { GithubSvg } from '@/components/svg/github'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -13,16 +13,38 @@ import { Separator } from '@/components/ui/separator'
 
 import { signInWithEmailAndPassword } from './actions'
 
-export default function SignInForm() {
-  const [state, formState, isPending] = useActionState(
-    signInWithEmailAndPassword,
-    { success: false, message: null, errors: null },
-  )
+interface FormState {
+  success: boolean
+  message: null
+  errors: Record<string, string[]> | null
+}
 
-  const { success, message, errors } = state
+export default function SignInForm() {
+  const [isPending, startTransition] = useTransition()
+  const [formState, setFormState] = useState<FormState>({
+    success: false,
+    message: null,
+    errors: null,
+  })
+
+  async function handleSignIn(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const form = event.currentTarget
+
+    const data = new FormData(form)
+
+    startTransition(async () => {
+      const state = await signInWithEmailAndPassword(data)
+
+      setFormState(state)
+    })
+  }
+
+  const { success, message, errors } = formState
 
   return (
-    <form action={formState} className="space-y-4">
+    <form onSubmit={handleSignIn} className="space-y-4">
       {!success && message && (
         <Alert variant="destructive">
           <AlertTriangle className="size-4" />
