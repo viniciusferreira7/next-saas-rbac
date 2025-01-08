@@ -2,6 +2,7 @@
 
 import { AlertTriangle, LoaderCircle } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { GithubSvg } from '@/components/svg/github'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -14,8 +15,13 @@ import { useFormState } from '@/hooks/use-form-state'
 import { signInWithEmailAndPassword } from './actions'
 
 export default function SignInForm() {
+  const router = useRouter()
+
   const [formState, handleSignIn, isPending] = useFormState(
     signInWithEmailAndPassword,
+    () => {
+      router.push('/')
+    },
   )
 
   const { success, message, errors } = formState

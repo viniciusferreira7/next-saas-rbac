@@ -1,8 +1,10 @@
 'use server'
 
 import { HTTPError } from 'ky'
+import { cookies } from 'next/headers'
 import { z } from 'zod'
 
+import { TOKEN_NAME } from '@/app/utils/token'
 import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({
@@ -15,6 +17,8 @@ const signInSchema = z.object({
 })
 
 export async function signInWithEmailAndPassword(data: FormData) {
+  const cookieStore = await cookies()
+
   const result = signInSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
@@ -31,7 +35,12 @@ export async function signInWithEmailAndPassword(data: FormData) {
       password: password.toString(),
     })
 
-    console.log({ token })
+    cookieStore.set(TOKEN_NAME, token, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 7, // 7 dayjs
+    })
+
+
     return { success: true, message: null, errors: null }
   } catch (err) {
     if (err instanceof HTTPError) {
@@ -48,4 +57,5 @@ export async function signInWithEmailAndPassword(data: FormData) {
       errors: null,
     }
   }
+
 }
