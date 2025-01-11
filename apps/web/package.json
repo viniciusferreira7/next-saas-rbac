@@ -27,6 +27,7 @@
     "@saas/eslint-config": "workspace:*",
     "@saas/prettier-config": "workspace:*",
     "@saas/tsconfig": "workspace:*",
+    "@saas/env": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -40,7 +40,6 @@ export async function signInWithEmailAndPassword(data: FormData) {
       maxAge: 60 * 60 * 24 * 7, // 7 dayjs
     })
 
-
     return { success: true, message: null, errors: null }
   } catch (err) {
     if (err instanceof HTTPError) {
@@ -57,5 +56,4 @@ export async function signInWithEmailAndPassword(data: FormData) {
       errors: null,
     }
   }
-
 }
