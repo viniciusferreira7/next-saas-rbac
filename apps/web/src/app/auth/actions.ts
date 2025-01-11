@@ -12,7 +12,7 @@ export async function signInWithGithub() {
   githubSignInURL.searchParams.set('client_id', env.GITHUB_OAUTH_CLIENT_ID)
   githubSignInURL.searchParams.set(
     'redirect_uri',
-    env.GITHUB_OAUTH_CLIENT_SECRET,
+    env.GITHUB_OAUTH_CLIENT_REDIRECT_URL,
   )
   githubSignInURL.searchParams.set('scope', 'user')
 
