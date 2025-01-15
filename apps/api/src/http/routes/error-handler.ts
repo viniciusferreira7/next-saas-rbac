@@ -7,6 +7,8 @@ import { UnauthorizedError } from './_error/unauthorized-error'
 type FastifyErrorHandler = FastifyInstance['errorHandler']
 
 export const errorHandler: FastifyErrorHandler = (error, request, reply) => {
+  console.log({ error })
+
   if (error instanceof ZodError) {
     return reply.status(400).send({
       message: 'Validation error',
