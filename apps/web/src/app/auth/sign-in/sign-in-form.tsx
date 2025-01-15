@@ -63,13 +63,20 @@ export default function SignInForm() {
             Forgot your password?
           </Link>
         </div>
-        <Button type="submit" className="w-full">
-          {isPending ? (
-            <LoaderCircle className="size-4 animate-spin" />
-          ) : (
-            ' Sign-in with e-mail'
-          )}
-        </Button>
+        <div className="space-y-3">
+          <Button type="submit" className="w-full">
+            {isPending ? (
+              <LoaderCircle className="size-4 animate-spin" />
+            ) : (
+              ' Sign-in with e-mail'
+            )}
+          </Button>
+          <Button variant="ghost" asChild>
+            <Link href="/auth/sign-up" className="w-full">
+              Create new account
+            </Link>
+          </Button>
+        </div>
       </form>
       <form action={signInWithGithub}>
         <Separator />
