@@ -37,7 +37,7 @@ export async function signInWithEmailAndPassword(data: FormData) {
 
     cookieStore.set(TOKEN_NAME, token, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7, // 7 dayjs
+      maxAge: 60 * 60 * 24 * 7, // 7 days
     })
 
     return { success: true, message: null, errors: null }
