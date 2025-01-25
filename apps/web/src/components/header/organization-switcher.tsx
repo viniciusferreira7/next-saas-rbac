@@ -1,9 +1,9 @@
-import { ChevronsUpDown, PlusCircle } from 'lucide-react'
+import { PlusCircle } from 'lucide-react'
 import Link from 'next/link'
 
 import { getOrganizations } from '@/http/get-organizations'
 
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,18 +11,15 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from './ui/dropdown-menu'
+} from '../ui/dropdown-menu'
+import { OrganizationSelect } from './organization-select'
 
 export async function OrganizationSwitcher() {
   const { organizations } = await getOrganizations()
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary">
-        <span className="text-muted-foreground">Select organization</span>
-        <ChevronsUpDown className="ml-auto size-4 text-muted-foreground" />
-      </DropdownMenuTrigger>
+      <OrganizationSelect organizations={organizations} />
       <DropdownMenuContent
         align="end"
         alignOffset={-16}

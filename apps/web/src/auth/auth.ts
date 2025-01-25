@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { TOKEN_NAME } from '@/app/utils/token'
+import { TOKEN_NAME } from '@/app/utils/types/token'
 import { getProfile } from '@/http/get-profile'
 
 export async function auth() {

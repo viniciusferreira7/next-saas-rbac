@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { TOKEN_NAME } from '@/app/utils/token'
+import { TOKEN_NAME } from '@/app/utils/types/token'
 import { signInWithGithub } from '@/http/sign-in-with-github'
 
 export async function GET(request: NextRequest) {

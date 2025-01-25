@@ -2,7 +2,7 @@ import { env } from '@saas/env'
 import { type CookiesFn, getCookie } from 'cookies-next'
 import ky from 'ky'
 
-import { TOKEN_NAME } from '@/app/utils/token'
+import { TOKEN_NAME } from '@/app/utils/types/token'
 
 export const api = ky.create({
   prefixUrl: env.NEXT_PUBLIC_API_URL,

@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers'
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { TOKEN_NAME } from '@/app/utils/token'
+import { TOKEN_NAME } from '@/app/utils/types/token'
 
 export async function GET(request: NextRequest) {
   const cookieStore = await cookies()

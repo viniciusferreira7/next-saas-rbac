@@ -4,7 +4,7 @@ import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
 
-import { TOKEN_NAME } from '@/app/utils/token'
+import { TOKEN_NAME } from '@/app/utils/types/token'
 import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({

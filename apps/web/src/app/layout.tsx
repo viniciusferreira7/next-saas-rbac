@@ -3,7 +3,10 @@ import './globals.css'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Create Next App',
+  title: {
+    template: '%s | Turbo',
+    default: 'Turbo',
+  },
 }
 
 export default function RootLayout({

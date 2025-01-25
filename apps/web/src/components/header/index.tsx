@@ -1,8 +1,8 @@
 import { Slash } from 'lucide-react'
 
+import { LogoSvg } from '../svg/logo'
 import { OrganizationSwitcher } from './organization-switcher'
 import { ProfileButton } from './profile-button'
-import { LogoSvg } from './svg/logo'
 
 export function Header() {
   return (
