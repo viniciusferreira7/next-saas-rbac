@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 import { getOrganizations } from '@/http/get-organizations'
 
 interface OrgPageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function generateMetadata({

@@ -1,7 +1,7 @@
 'use client'
 
 import { ChevronsUpDown } from 'lucide-react'
-import { usePathname } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import type { GetOrganizationsResponse } from '@/http/get-organizations'
 
@@ -13,9 +13,9 @@ interface OrganizationSelectProps {
 }
 
 export function OrganizationSelect({ organizations }: OrganizationSelectProps) {
-  const pathname = usePathname()
+  const params = useParams<{ slug: string }>()
 
-  const [, , currentOrg] = pathname.split('/')
+  const currentOrg = params.slug
 
   const currentOrganization = organizations?.find(
     (org) => org.slug === currentOrg,

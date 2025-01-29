@@ -30,7 +30,7 @@ export async function OrganizationSwitcher() {
           {organizations.map((organization) => {
             return (
               <DropdownMenuItem key={organization.id} asChild>
-                <Link href={`/org/${organization.slug}`}>
+                <a href={`/org/${organization.slug}`}>
                   <Avatar className="mr-2 size-4">
                     {organization.avatarUrl && (
                       <AvatarImage src={organization.avatarUrl} />
@@ -38,7 +38,7 @@ export async function OrganizationSwitcher() {
                     <AvatarFallback />
                   </Avatar>
                   <span className="line-clamp-1">{organization.name}</span>
-                </Link>
+                </a>
               </DropdownMenuItem>
             )
           })}
