@@ -6,9 +6,9 @@ export default function AppLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="py-4">
+    <div className="space-y-4 py-4">
       <Header />
-      {children}
+      <main className="mx-auto h-full max-w-[1200px]">{children}</main>
     </div>
   )
 }
