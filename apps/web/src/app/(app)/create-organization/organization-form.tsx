@@ -18,27 +18,17 @@ export function OrganizationForm() {
 
   return (
     <div className="space-y-4">
-      <h1 className="text-2xl font-bold">Create organization</h1>
-      <div className="space-y-4">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {!success && message && (
-            <Alert variant="destructive">
-              <AlertTriangle className="size-4" />
-              <AlertTitle>Organization in failed!</AlertTitle>
-              <AlertDescription>
-                <p>{message}</p>
-              </AlertDescription>
-            </Alert>
-          )}
-          {success === true && message && (
-            <Alert variant="success">
-              <AlertTriangle className="size-4" />
-              <AlertTitle>Success!</AlertTitle>
-              <AlertDescription>
-                <p>{message}</p>
-              </AlertDescription>
-            </Alert>
-          )}
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {!success && message && (
+          <Alert variant="destructive">
+            <AlertTriangle className="size-4" />
+            <AlertTitle>Organization in failed!</AlertTitle>
+            <AlertDescription>
+              <p>{message}</p>
+            </AlertDescription>
+          </Alert>
+        )}
+        {success === true && message && (
           <Alert variant="success">
             <AlertTriangle className="size-4" />
             <AlertTitle>Success!</AlertTitle>
@@ -46,65 +36,65 @@ export function OrganizationForm() {
               <p>{message}</p>
             </AlertDescription>
           </Alert>
-          <div>
-            <Label htmlFor="name">Organization name</Label>
-            <Input id="name" name="name" />
-            {errors?.name && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
-                {errors?.name[0]}
-              </p>
-            )}
-          </div>
-          <div>
-            <Label htmlFor="domain">E-mail domain</Label>
-            <Input
-              id="domain"
-              name="domain"
-              type="text"
-              inputMode="url"
-              placeholder="example.com"
-            />
-            {errors?.domain && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
-                {errors?.domain[0]}
-              </p>
-            )}
-          </div>
-          <div className="space-y-1">
-            <div className="flex items-baseline space-x-2">
-              <div className="translate-y-0.5">
-                <Checkbox
-                  name="shouldAttachUsersByDomain"
-                  id="shouldAttachUsersByDomain"
-                />
-              </div>
-              <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
-                <span className="text-sm font-medium leading-none">
-                  Auto-join new members
-                </span>
-                <p className="text-sm text-muted-foreground">
-                  This will automatically invite all members with same e-mail
-                  domain to this organization.
-                </p>
-              </label>
+        )}
+        <div>
+          <Label htmlFor="name">Organization name</Label>
+          <Input id="name" name="name" />
+          {errors?.name && (
+            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              {errors?.name[0]}
+            </p>
+          )}
+        </div>
+        <div>
+          <Label htmlFor="domain">E-mail domain</Label>
+          <Input
+            id="domain"
+            name="domain"
+            type="text"
+            inputMode="url"
+            placeholder="example.com"
+          />
+          {errors?.domain && (
+            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              {errors?.domain[0]}
+            </p>
+          )}
+        </div>
+        <div className="space-y-1">
+          <div className="flex items-baseline space-x-2">
+            <div className="translate-y-0.5">
+              <Checkbox
+                name="shouldAttachUsersByDomain"
+                id="shouldAttachUsersByDomain"
+              />
             </div>
-            {errors?.shouldAttachUsersByDomain && (
-              <p className="text-xs font-medium text-red-500 dark:text-red-400">
-                {errors?.shouldAttachUsersByDomain[0]}
+            <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">
+              <span className="text-sm font-medium leading-none">
+                Auto-join new members
+              </span>
+              <p className="text-sm text-muted-foreground">
+                This will automatically invite all members with same e-mail
+                domain to this organization.
               </p>
+            </label>
+          </div>
+          {errors?.shouldAttachUsersByDomain && (
+            <p className="text-xs font-medium text-red-500 dark:text-red-400">
+              {errors?.shouldAttachUsersByDomain[0]}
+            </p>
+          )}
+        </div>
+        <div className="space-y-3">
+          <Button type="submit" className="w-full">
+            {isPending ? (
+              <LoaderCircle className="size-4 animate-spin" />
+            ) : (
+              'Save organization'
             )}
-          </div>
-          <div className="space-y-3">
-            <Button type="submit" className="w-full">
-              {isPending ? (
-                <LoaderCircle className="size-4 animate-spin" />
-              ) : (
-                'Save organization'
-              )}
-            </Button>
-          </div>
-        </form>
-      </div>
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }
