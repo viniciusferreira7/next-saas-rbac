@@ -15,12 +15,10 @@ export const api = ky.create({
           const { cookies: serverCookies } = await import('next/headers')
 
           cookieStore = serverCookies
+        }
+        const token = await getCookie(TOKEN_NAME, { cookies: cookieStore })
 
-          const token = await getCookie(TOKEN_NAME, { cookies: cookieStore })
-
-          if (token) {
-            request.headers.set('Authorization', `Bearer ${token}`)
-          }
+        if (token) {
           request.headers.set('Authorization', `Bearer ${token}`)
         }
       },
