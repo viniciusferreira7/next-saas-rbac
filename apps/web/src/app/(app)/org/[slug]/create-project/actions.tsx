@@ -3,6 +3,7 @@
 import { HTTPError } from 'ky'
 import { z } from 'zod'
 
+import { getCurrentOrg } from '@/auth/auth'
 import { createProject } from '@/http/create-project'
 
 const projectSchema = z.object({
@@ -23,8 +24,14 @@ export async function createProjectAction(data: FormData) {
 
   const { name, description } = result.data
 
+  const { currentOrg } = await getCurrentOrg()
+
   try {
+    if (!currentOrg)
+      return { success: false, message: 'Organization not found', errors: null }
+
     await createProject({
+      orgSlug: currentOrg,
       name,
       description,
     })
