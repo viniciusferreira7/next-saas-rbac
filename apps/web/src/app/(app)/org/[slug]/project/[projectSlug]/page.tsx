@@ -8,5 +8,9 @@ interface ProjectPageProps {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { projectSlug } = await params
 
-  return <div>Project: {projectSlug}</div>
+  return (
+    <div className="space-y-4">
+      <h1 className="text-2xl font-bold">Project: {projectSlug}</h1>
+    </div>
+  )
 }
