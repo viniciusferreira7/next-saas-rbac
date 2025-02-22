@@ -33,18 +33,17 @@ export async function Tabs() {
             <NavLink href={`/org/${currentOrg}/members`}>Members</NavLink>
           </Button>
         )}
-        {canUpdateOrganization ||
-          (canGetBilling && (
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="border border-transparent text-muted-foreground data-[current=true]:border-input data-[current=true]:text-foreground">
-              <NavLink href={`/org/${currentOrg}/settings`}>
-                Settings & Billing
-              </NavLink>
-            </Button>
-          ))}
+        {(canUpdateOrganization || canGetBilling) && (
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="border border-transparent text-muted-foreground data-[current=true]:border-input data-[current=true]:text-foreground">
+            <NavLink href={`/org/${currentOrg}/settings`}>
+              Settings & Billing
+            </NavLink>
+          </Button>
+        )}
       </nav>
     </div>
   )
