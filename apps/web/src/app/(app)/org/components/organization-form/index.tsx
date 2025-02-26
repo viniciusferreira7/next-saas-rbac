@@ -9,12 +9,24 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useFormState } from '@/hooks/use-form-state'
 
-import { createOrganizationAction } from '../../create-organization/actions'
+import { createOrganizationAction, updateOrganizationAction } from './actions'
+import type { OrganizationSchema } from './schema/organization-schema'
 
-export function OrganizationForm() {
-  const [{ success, message, errors }, handleSubmit, isPending] = useFormState(
-    createOrganizationAction,
-  )
+interface OrganizationFormProps {
+  isUpdating?: boolean
+  initialData?: OrganizationSchema
+}
+
+export function OrganizationForm({
+  isUpdating = false,
+  initialData,
+}: OrganizationFormProps) {
+  const formAction = isUpdating
+    ? updateOrganizationAction
+    : createOrganizationAction
+
+  const [{ success, message, errors }, handleSubmit, isPending] =
+    useFormState(formAction)
 
   return (
     <div className="space-y-4">
@@ -39,7 +51,7 @@ export function OrganizationForm() {
         )}
         <div>
           <Label htmlFor="name">Organization name</Label>
-          <Input id="name" name="name" />
+          <Input id="name" name="name" defaultValue={initialData?.name} />
           {errors?.name && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
               {errors?.name[0]}
@@ -54,6 +66,7 @@ export function OrganizationForm() {
             type="text"
             inputMode="url"
             placeholder="example.com"
+            defaultValue={initialData?.domain ?? undefined}
           />
           {errors?.domain && (
             <p className="text-xs font-medium text-red-500 dark:text-red-400">
@@ -67,6 +80,7 @@ export function OrganizationForm() {
               <Checkbox
                 name="shouldAttachUsersByDomain"
                 id="shouldAttachUsersByDomain"
+                defaultChecked={initialData?.shouldAttachUsersByDomain}
               />
             </div>
             <label htmlFor="shouldAttachUsersByDomain" className="space-y-1">

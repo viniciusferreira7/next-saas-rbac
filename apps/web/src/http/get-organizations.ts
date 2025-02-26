@@ -10,7 +10,13 @@ export interface GetOrganizationsResponse {
 }
 
 export async function getOrganizations(): Promise<GetOrganizationsResponse> {
-  const data = await api.get('organizations').json<GetOrganizationsResponse>()
+  const data = await api
+    .get('organizations', {
+      next: {
+        tags: ['organizations'],
+      },
+    })
+    .json<GetOrganizationsResponse>()
 
   return data
 }
