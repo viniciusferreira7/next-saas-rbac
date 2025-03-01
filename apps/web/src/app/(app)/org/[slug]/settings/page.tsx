@@ -12,7 +12,7 @@ import { getOrganization } from '@/http/get-organization'
 
 import { OrganizationForm } from '../../components/organization-form'
 import { Billing } from './components/billing'
-import { ShutdownOrganizationButton } from './components/shoutdown-organization-button'
+import { ShutdownOrganizationButton } from './components/shutdown-organization-button'
 
 export default async function SettingsPage() {
   const { currentOrg } = await getCurrentOrg()

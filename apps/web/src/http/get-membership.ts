@@ -3,9 +3,7 @@ import { type Role } from '@saas/auth'
 import { api } from './api-client'
 
 export interface GetMembershipRequest {
-  params: {
-    slug: string
-  }
+  slug: string
 }
 
 export interface GetMembershipResponse {
@@ -18,10 +16,10 @@ export interface GetMembershipResponse {
 }
 
 export async function getMembership({
-  params,
+  slug,
 }: GetMembershipRequest): Promise<GetMembershipResponse> {
   const data = await api
-    .get(`organizations/${params.slug}/membership`, {})
+    .get(`organizations/${slug}/membership`, {})
     .json<GetMembershipResponse>()
 
   return data

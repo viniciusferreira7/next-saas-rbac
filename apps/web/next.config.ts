@@ -1,7 +1,22 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'github.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/u/**',
+      },
+    ],
 
-export default nextConfig;
+    // TODO: If the image load more than seven second, it will throw timeout error on nextjs image optimisation server (Nextjs 15).
+    unoptimized: true,
+  },
+}
+
+export default nextConfig
