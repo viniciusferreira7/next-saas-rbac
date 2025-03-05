@@ -21,7 +21,11 @@ export async function getMembers({
   orgSlug,
 }: GetMembersParams): Promise<GetMembersResponse> {
   const data = await api
-    .get(`organizations/${orgSlug}/members`)
+    .get(`organizations/${orgSlug}/members`, {
+      next: {
+        tags: [`${orgSlug}/members`],
+      },
+    })
     .json<GetMembersResponse>()
 
   return data
