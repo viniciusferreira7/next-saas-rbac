@@ -110,7 +110,7 @@ async function seed() {
       name: 'Acme Inc (Billing)',
       slug: 'acme-billing',
       avatarUrl: faker.image.avatarGitHub(),
-      ownerId: user.id,
+      ownerId: anotherUser.id,
       projects: {
         createMany: {
           data: [
@@ -176,7 +176,7 @@ async function seed() {
       name: 'Acme Inc (Member)',
       slug: 'acme-member',
       avatarUrl: faker.image.avatarGitHub(),
-      ownerId: user.id,
+      ownerId: anotherUser2.id,
       projects: {
         createMany: {
           data: [
@@ -225,11 +225,11 @@ async function seed() {
             },
             {
               userId: anotherUser.id,
-              role: 'ADMIN',
+              role: 'MEMBER',
             },
             {
               userId: anotherUser2.id,
-              role: 'MEMBER',
+              role: 'ADMIN',
             },
           ],
         },
