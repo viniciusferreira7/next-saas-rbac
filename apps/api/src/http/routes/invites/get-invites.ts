@@ -7,7 +7,6 @@ import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
-import { BadRequestError } from '../_error/bad-request-error'
 import { UnauthorizedError } from '../_error/unauthorized-error'
 
 export async function getInvites(app: FastifyInstance) {
@@ -80,10 +79,6 @@ export async function getInvites(app: FastifyInstance) {
             createdAt: 'desc',
           },
         })
-
-        if (!invites.length) {
-          throw new BadRequestError('Invites not found.')
-        }
 
         reply.status(200).send({ invites })
       },
