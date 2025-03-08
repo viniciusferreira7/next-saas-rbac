@@ -39,7 +39,7 @@ export function SignUpForm() {
             </AlertDescription>
           </Alert>
         )}
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="name">Name</Label>
           <Input id="name" name="name" />
           {errors?.name && (
@@ -48,7 +48,7 @@ export function SignUpForm() {
             </p>
           )}
         </div>
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="email">E-mail</Label>
           <Input id="email" name="email" type="email" />
           {errors?.email && (
@@ -57,7 +57,7 @@ export function SignUpForm() {
             </p>
           )}
         </div>
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="password">Password</Label>
           <Input id="password" name="password" type="password" />
           {errors?.password && (
@@ -66,7 +66,7 @@ export function SignUpForm() {
             </p>
           )}
         </div>
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="password_confirmation">Confirm your password</Label>
           <Input
             id="password_confirmation"

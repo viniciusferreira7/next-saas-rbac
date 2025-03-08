@@ -43,7 +43,7 @@ export function ProjectForm() {
             </AlertDescription>
           </Alert>
         )}
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="name">Project name</Label>
           <Input id="name" name="name" />
           {errors?.name && (
@@ -52,7 +52,7 @@ export function ProjectForm() {
             </p>
           )}
         </div>
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="description">Description</Label>
           <Textarea id="description" name="description" />
           {errors?.description && (

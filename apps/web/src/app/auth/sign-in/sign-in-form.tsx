@@ -40,7 +40,7 @@ export default function SignInForm() {
           </Alert>
         )}
 
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="email">E-mail</Label>
           <Input id="email" name="email" type="email" />
           {errors?.email && (
@@ -49,7 +49,7 @@ export default function SignInForm() {
             </p>
           )}
         </div>
-        <div>
+        <div className="space-y-1">
           <Label htmlFor="password">Password</Label>
           <Input id="password" name="password" type="password" />
           {errors?.password && (
