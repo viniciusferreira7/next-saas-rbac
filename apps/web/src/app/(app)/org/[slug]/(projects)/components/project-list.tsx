@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import { ArrowRight } from 'lucide-react'
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -9,36 +11,55 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { getProjects } from '@/http/get-projects'
 
-export function ProjectList() {
+dayjs.extend(relativeTime)
+
+interface ProjectListProps {
+  orgSlug: string
+}
+
+export async function ProjectList({ orgSlug }: ProjectListProps) {
+  const { projects } = await getProjects({
+    orgSlug,
+  })
+
   return (
     <div className="grid grid-cols-3 gap-4">
-      <Card>
-        <CardHeader>
-          <CardTitle>Project 01</CardTitle>
-          <CardDescription className="line-clamp-3 leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam eaque
-            quae magnam ut asperiores modi, fugit quaerat suscipit error
-            molestias illum quo recusandae architecto velit eligendi debitis?
-            Alias, dignissimos quasi!
-          </CardDescription>
-        </CardHeader>
-        <CardFooter className="flex items-center gap-1.5">
-          <Avatar className="size-4">
-            <AvatarFallback className="text-xs">P</AvatarFallback>
-            <AvatarImage />
-          </Avatar>
-          <span className="text-sm text-muted-foreground">
-            Created by{' '}
-            <span className="font-medium text-foreground">John Doe</span> a day
-            ago
-          </span>
-          <Button size="xs" variant="outline" className="ml-auto">
-            View
-            <ArrowRight className="ml-2 size-3 shrink-0" />
-          </Button>
-        </CardFooter>
-      </Card>
+      {projects?.map((project) => {
+        return (
+          <Card key={project.id} className="flex flex-col justify-between">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">
+                {project.name}
+              </CardTitle>
+              <CardDescription className="line-clamp-3 leading-relaxed">
+                {project.description}
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className="flex items-center gap-1.5">
+              <Avatar className="size-4">
+                <AvatarFallback className="text-xs">
+                  {project.name.charAt(0).toUpperCase()}
+                </AvatarFallback>
+                {project.owner.avatarUrl && (
+                  <AvatarImage src={project.owner.avatarUrl} />
+                )}
+              </Avatar>
+              <span className="truncate text-sm text-muted-foreground">
+                <span className="truncate font-medium text-foreground">
+                  {project.owner.name}
+                </span>{' '}
+                {dayjs(project.createdAt).fromNow()}
+              </span>
+              <Button size="xs" variant="outline" className="ml-auto">
+                View
+                <ArrowRight className="ml-2 size-3 shrink-0" />
+              </Button>
+            </CardFooter>
+          </Card>
+        )
+      })}
     </div>
   )
 }

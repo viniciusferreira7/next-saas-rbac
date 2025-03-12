@@ -1,6 +1,7 @@
 'use server'
 
 import { HTTPError } from 'ky'
+import { revalidateTag } from 'next/cache'
 import { z } from 'zod'
 
 import { getCurrentOrg } from '@/auth/auth'
@@ -37,6 +38,8 @@ export async function createProjectAction(data: FormData) {
       name,
       description,
     })
+
+    revalidateTag(`${currentOrg}/projects`)
 
     return {
       success: true,

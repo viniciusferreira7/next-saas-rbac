@@ -44,7 +44,7 @@ export default async function OrgPage({ params }: OrgPageProps) {
         )}
       </div>
       {permissions?.can('get', 'Project') ? (
-        <ProjectList />
+        <ProjectList orgSlug={slug} />
       ) : (
         <p className="text-sm text-muted-foreground">
           You are not allowed to see organization projects.

@@ -26,7 +26,11 @@ export async function getProjects({
   orgSlug,
 }: GetProjectsParams): Promise<GetProjectsResponse> {
   const data = await api
-    .get(`organizations/${orgSlug}/projects`)
+    .get(`organizations/${orgSlug}/projects`, {
+      next: {
+        tags: [`${orgSlug}/projects`],
+      },
+    })
     .json<GetProjectsResponse>()
 
   return data
