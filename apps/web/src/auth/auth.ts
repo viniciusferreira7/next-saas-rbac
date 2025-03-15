@@ -7,6 +7,12 @@ import { TOKEN_NAME } from '@/app/utils/types/token'
 import { getMembership } from '@/http/get-membership'
 import { getProfile } from '@/http/get-profile'
 
+export async function isAuthenticated() {
+  const cookieStorage = await cookies()
+
+  return cookieStorage.has(TOKEN_NAME)
+}
+
 export async function getCurrentOrg() {
   const cookieStore = await cookies()
 

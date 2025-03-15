@@ -1,8 +1,14 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { LogIn } from 'lucide-react'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
 
+import { auth, isAuthenticated } from '@/auth/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import { acceptInvite } from '@/http/accept-invite'
 import { getInvite } from '@/http/get-invite'
 
 dayjs.extend(relativeTime)
@@ -16,9 +22,36 @@ interface InvitePageProps {
 export default async function InvitePage({ params }: InvitePageProps) {
   const { id } = await params
 
-  const { invite } = await getInvite({
-    inviteId: id,
-  })
+  const [{ invite }, isUserAuthenticate] = await Promise.all([
+    await getInvite({
+      inviteId: id,
+    }),
+    isAuthenticated(),
+  ])
+
+  const currentUserEmail = (await auth()).user?.email ?? null
+  const userIsAuthenticatedWithSameEmailFromInvite =
+    currentUserEmail === invite.email
+
+  async function signInFromInvite() {
+    'use server'
+
+    const cookieStorage = await cookies()
+
+    cookieStorage.set('invite-id', invite.id)
+
+    redirect(`/auth/sign-in?email=${invite.email}`)
+  }
+
+  async function acceptInviteAction() {
+    'use server'
+
+    await acceptInvite({
+      inviteId: invite.id,
+    })
+
+    redirect('/')
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center px-4">
@@ -45,6 +78,23 @@ export default async function InvitePage({ params }: InvitePageProps) {
           </p>
 
           <Separator />
+          {!isUserAuthenticate && (
+            <form action={signInFromInvite}>
+              <Button type="submit" variant="secondary" className="w-full">
+                <LogIn className="mr-2 size-4 shrink-0" />
+                Sign in to accept invite
+              </Button>
+            </form>
+          )}
+
+          {userIsAuthenticatedWithSameEmailFromInvite && (
+            <form action={acceptInviteAction}>
+              <Button type="submit" variant="secondary" className="w-full">
+                <LogIn className="mr-2 size-4 shrink-0" />
+                Join {invite.organization.name}
+              </Button>
+            </form>
+          )}
         </div>
       </div>
     </div>
