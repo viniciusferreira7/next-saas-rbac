@@ -30,7 +30,7 @@ export async function ProjectList({ orgSlug }: ProjectListProps) {
         return (
           <Card key={project.id} className="flex flex-col justify-between">
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">
+              <CardTitle className="truncate text-xl font-semibold">
                 {project.name}
               </CardTitle>
               <CardDescription className="line-clamp-3 leading-relaxed">
