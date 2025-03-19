@@ -2,6 +2,7 @@ import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { LogIn } from 'lucide-react'
 import { cookies } from 'next/headers'
+import Link from 'next/link'
 import { redirect } from 'next/navigation'
 
 import { auth, isAuthenticated } from '@/auth/auth'
@@ -29,7 +30,14 @@ export default async function InvitePage({ params }: InvitePageProps) {
     isAuthenticated(),
   ])
 
-  const currentUserEmail = (await auth()).user?.email ?? null
+  let currentUserEmail = null
+
+  if (isUserAuthenticate) {
+    const { user } = await auth()
+
+    currentUserEmail = user.email
+  }
+
   const userIsAuthenticatedWithSameEmailFromInvite =
     currentUserEmail === invite.email
 
@@ -95,6 +103,33 @@ export default async function InvitePage({ params }: InvitePageProps) {
               </Button>
             </form>
           )}
+
+          {isUserAuthenticate &&
+            !userIsAuthenticatedWithSameEmailFromInvite && (
+              <div className="space-y-4">
+                <p className="text-balance text-center text-sm leading-relaxed">
+                  This invite was sent to{' '}
+                  <span className="font-medium text-foreground">
+                    {invite.email}
+                  </span>{' '}
+                  but you are currently authenticated as{' '}
+                  <span className="font-medium text-foreground">
+                    {currentUserEmail}
+                  </span>
+                </p>
+
+                <div className="space-y-2">
+                  <Button variant="secondary" className="w-full" asChild>
+                    <Link prefetch={false} href="/api/auth/sign-out">
+                      Sign out from {currentUserEmail}
+                    </Link>
+                  </Button>
+                  <Button variant="secondary" className="w-full" asChild>
+                    <Link href="/">Back to dashboard</Link>
+                  </Button>
+                </div>
+              </div>
+            )}
         </div>
       </div>
     </div>

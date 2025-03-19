@@ -1,9 +1,8 @@
 import { organizationSchema } from '@saas/auth'
 import { ArrowLeftRight, Crown, UserMinus } from 'lucide-react'
-import Image from 'next/image'
 
 import { getAbility, getCurrentOrg } from '@/auth/auth'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { getMembers } from '@/http/get-members'
@@ -36,9 +35,12 @@ export async function MemberList() {
               <TableRow key={member.id}>
                 <TableCell className="py-2.5" style={{ width: 48 }}>
                   <Avatar>
-                    <AvatarFallback />
+                    <AvatarFallback>
+                      {member.name?.split(' ')[0].charAt(0)}{' '}
+                      {member.name?.split(' ')?.[1].charAt(0)}
+                    </AvatarFallback>
                     {member.avatarUrl && (
-                      <Image
+                      <AvatarImage
                         src={member.avatarUrl}
                         alt=""
                         width={32}

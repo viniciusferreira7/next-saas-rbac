@@ -34,6 +34,8 @@ export async function GET(request: NextRequest) {
       await acceptInvite({
         inviteId,
       })
+
+      cookieStore.delete('invite-id')
     } catch {}
   }
 
