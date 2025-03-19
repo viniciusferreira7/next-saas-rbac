@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { getAbility } from '@/auth/auth'
 
+import { PendingInvites } from '../pending-invites'
 import { LogoSvg } from '../svg/logo'
 import { Separator } from '../ui/separator'
 import { OrganizationSwitcher } from './organization-switcher'
@@ -30,6 +31,7 @@ export async function Header() {
         )}
       </div>
       <div className="flex items-center gap-4">
+        <PendingInvites />
         <ThemeSwitcher />
         <Separator orientation="vertical" className="h-5" />
         <ProfileButton />
