@@ -22,7 +22,7 @@ export async function getProject(app: FastifyInstance) {
           security: [{ bearerAuth: [] }],
           params: z.object({
             orgSlug: z.string(),
-            projectSlug: z.string().uuid(),
+            projectSlug: z.string(),
           }),
           response: {
             200: z.object({
@@ -74,7 +74,7 @@ export async function getProject(app: FastifyInstance) {
             },
           },
           where: {
-            id: projectSlug,
+            slug: projectSlug,
             organizationId: organization.id,
           },
         })
