@@ -1,7 +1,22 @@
-import { getAbility } from '@/auth/auth'
+import type { Metadata } from 'next'
+
+import { getAbility, getCurrentOrg } from '@/auth/auth'
+import { getOrganization } from '@/http/get-organization'
 
 import { Invites } from './components/invites'
 import { MemberList } from './components/member-list'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { currentOrg } = await getCurrentOrg()
+
+  const { organization } = await getOrganization({
+    org: currentOrg!,
+  })
+
+  return {
+    title: `Members - ${organization.name}`,
+  }
+}
 
 export default async function MembersPage() {
   const { permissions } = await getAbility()

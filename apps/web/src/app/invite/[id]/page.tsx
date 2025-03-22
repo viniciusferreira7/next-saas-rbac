@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { LogIn } from 'lucide-react'
+import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -18,6 +19,10 @@ interface InvitePageProps {
   params: Promise<{
     id: string
   }>
+}
+
+export const metadata: Metadata = {
+  title: 'Invite',
 }
 
 export default async function InvitePage({ params }: InvitePageProps) {

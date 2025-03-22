@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { redirect } from 'next/navigation'
 
 import { getAbility, getCurrentOrg } from '@/auth/auth'
@@ -13,6 +14,18 @@ import { getOrganization } from '@/http/get-organization'
 import { OrganizationForm } from '../../components/organization-form'
 import { Billing } from './components/billing'
 import { ShutdownOrganizationButton } from './components/shutdown-organization-button'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { currentOrg } = await getCurrentOrg()
+
+  const { organization } = await getOrganization({
+    org: currentOrg!,
+  })
+
+  return {
+    title: `Settings - ${organization.name}`,
+  }
+}
 
 export default async function SettingsPage() {
   const { currentOrg } = await getCurrentOrg()
