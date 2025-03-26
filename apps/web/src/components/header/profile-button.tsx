@@ -1,5 +1,4 @@
 import { ChevronDown, LogOut, User } from 'lucide-react'
-import Link from 'next/link'
 
 import { getInitialsName } from '@/app/utils/get-initials-name'
 import { auth } from '@/auth/auth'
@@ -38,10 +37,10 @@ export async function ProfileButton() {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem asChild>
-          <Link prefetch={false} href="/api/auth/sign-out">
+          <a href="/api/auth/sign-out">
             <LogOut className="mr-2 size-4" />
             Sign out
-          </Link>
+          </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

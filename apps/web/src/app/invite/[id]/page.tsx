@@ -125,9 +125,9 @@ export default async function InvitePage({ params }: InvitePageProps) {
 
                 <div className="space-y-2">
                   <Button variant="secondary" className="w-full" asChild>
-                    <Link prefetch={false} href="/api/auth/sign-out">
+                    <a href="/api/auth/sign-out">
                       Sign out from {currentUserEmail}
-                    </Link>
+                    </a>
                   </Button>
                   <Button variant="secondary" className="w-full" asChild>
                     <Link href="/">Back to dashboard</Link>

@@ -36,6 +36,7 @@ export async function getPendingInvite(app: FastifyInstance) {
                     .nullable(),
                   organization: z.object({
                     name: z.string(),
+                    slug: z.string(),
                   }),
                 }),
               ),
@@ -72,6 +73,7 @@ export async function getPendingInvite(app: FastifyInstance) {
             organization: {
               select: {
                 name: true,
+                slug: true,
               },
             },
           },
@@ -82,10 +84,6 @@ export async function getPendingInvite(app: FastifyInstance) {
             createdAt: 'desc',
           },
         })
-
-        if (!invites.length) {
-          throw new BadRequestError('Invites not found.')
-        }
 
         reply.status(200).send({ invites })
       },

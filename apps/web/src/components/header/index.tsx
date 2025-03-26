@@ -1,4 +1,5 @@
 import { Slash } from 'lucide-react'
+import { revalidateTag } from 'next/cache'
 import Link from 'next/link'
 
 import { getAbility } from '@/auth/auth'
@@ -13,6 +14,12 @@ import { ThemeSwitcher } from './theme-switcher'
 
 export async function Header() {
   const { permissions } = await getAbility()
+
+  async function handleRevalidateTag(tag: string) {
+    'use server'
+
+    revalidateTag(tag)
+  }
 
   return (
     <div className="mx-auto flex max-w-[1200px] items-center justify-between">
@@ -31,7 +38,7 @@ export async function Header() {
         )}
       </div>
       <div className="flex items-center gap-4">
-        <PendingInvites />
+        <PendingInvites onRevalidateTag={handleRevalidateTag} />
         <ThemeSwitcher />
         <Separator orientation="vertical" className="h-5" />
         <ProfileButton />
