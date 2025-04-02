@@ -15,7 +15,7 @@ import { useFormState } from '@/hooks/use-form-state'
 import { signInWithGithub } from '../actions'
 import { signInWithEmailAndPassword } from './actions'
 
-export default function SignInForm() {
+export function SignInForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
