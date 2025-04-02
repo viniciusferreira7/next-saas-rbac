@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import { getProject } from '@/http/get-project'
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     slug: string
     projectSlug: string
-  }
+  }>
 }
 
 export async function generateMetadata({
