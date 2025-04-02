@@ -1,5 +1,9 @@
 # Next.js SaaS + RBAC
 
+Web: https://next-saas-rbac-rl67smqet-viniciusferreira7s-projects.vercel.app/auth/sign-in
+
+Documentation: https://next-saas-rbac-bg05.onrender.com/documentation
+
 This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.
 
 ## Features
