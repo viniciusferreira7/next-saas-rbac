@@ -65,7 +65,8 @@ export default function SignInForm() {
           )}
           <Link
             href="/auth/forgot-password"
-            className="text-xs font-medium text-foreground hover:underline">
+            className="text-xs font-medium text-foreground hover:underline"
+          >
             Forgot your password?
           </Link>
         </div>

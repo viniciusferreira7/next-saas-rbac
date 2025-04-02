@@ -110,7 +110,8 @@ export function PendingInvites({ onRevalidateTag }: PendingInvitesProps) {
                         disabled={
                           isAcceptInvitePending || isRejectInvitePending
                         }
-                        onClick={() => handleAcceptInvite(invite.id)}>
+                        onClick={() => handleAcceptInvite(invite.id)}
+                      >
                         <Check className="mr-1.5 size-3 shrink-0" />
                         {isAcceptInvitePending ? 'Accepting...' : 'Accept'}
                       </Button>
@@ -121,7 +122,8 @@ export function PendingInvites({ onRevalidateTag }: PendingInvitesProps) {
                         disabled={
                           isAcceptInvitePending || isRejectInvitePending
                         }
-                        onClick={() => handleRejectInvite(invite.id)}>
+                        onClick={() => handleRejectInvite(invite.id)}
+                      >
                         <X className="mr-1.5 size-3 shrink-0" />
                         {isRejectInvitePending ? 'Revoking...' : 'Reject'}
                       </Button>

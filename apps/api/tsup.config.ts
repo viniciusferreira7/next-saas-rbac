@@ -1,9 +1,9 @@
-import { defineConfig } from 'tsup'
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ['src'],
+  entry: ["src"],
   splitting: false,
   sourcemap: true,
   clean: true,
-  noExternal: ['@saas/auth', '@saas/env'],
-})
+  noExternal: ["@saas/auth", "@saas/env"],
+});

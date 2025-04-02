@@ -74,7 +74,8 @@ export function ProjectSwitcher() {
         align="end"
         alignOffset={-16}
         sideOffset={12}
-        className="w-[200px]">
+        className="w-[200px]"
+      >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Organizations</DropdownMenuLabel>
           {projects?.map((project) => {

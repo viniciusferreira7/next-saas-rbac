@@ -31,7 +31,11 @@ export async function createProjectAction(data: FormData) {
 
   try {
     if (!currentOrg)
-      return { success: false, message: 'Organization not found', errors: null }
+      return {
+        success: false,
+        message: 'Organization not found',
+        errors: null,
+      }
 
     await createProject({
       orgSlug: currentOrg,

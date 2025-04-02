@@ -96,7 +96,8 @@ export async function MemberList() {
                           disabled={
                             member.userId === membership.userId ||
                             member.userId === organization.ownerId
-                          }>
+                          }
+                        >
                           <UserMinus className="mr-2 size-4 shrink-0" />
                           Remove
                         </Button>

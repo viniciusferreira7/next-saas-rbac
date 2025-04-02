@@ -13,7 +13,8 @@ export function Providers({ children }: { children: ReactNode }) {
       <ThemeProvider
         attribute="class"
         defaultTheme="dark"
-        disableTransitionOnChange>
+        disableTransitionOnChange
+      >
         {children}
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />

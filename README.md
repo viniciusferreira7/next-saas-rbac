@@ -6,40 +6,40 @@ This project contains all the necessary boilerplate to setup a multi-tenant SaaS
 
 ### Authentication
 
-- [X] It should be able to authenticate using e-mail & password;
-- [X] It should be able to authenticate using Github account;
-- [X] It should be able to recover password using e-mail;
-- [X] It should be able to create an account (e-mail, name and password);
+- [x] It should be able to authenticate using e-mail & password;
+- [x] It should be able to authenticate using Github account;
+- [x] It should be able to recover password using e-mail;
+- [x] It should be able to create an account (e-mail, name and password);
 
 ### Organizations
 
-- [X] It should be able to create a new organization;
-- [X] It should be able to get organizations to which the user belongs;
-- [X] It should be able to update an organization;
-- [X] It should be able to shutdown an organization;
-- [X] It should be able to transfer organization ownership;
+- [x] It should be able to create a new organization;
+- [x] It should be able to get organizations to which the user belongs;
+- [x] It should be able to update an organization;
+- [x] It should be able to shutdown an organization;
+- [x] It should be able to transfer organization ownership;
 
 ### Invites
 
-- [X] It should be able to invite a new member (e-mail, role);
-- [X] It should be able to accept an invite;
-- [X] It should be able to revoke a pending invite;
+- [x] It should be able to invite a new member (e-mail, role);
+- [x] It should be able to accept an invite;
+- [x] It should be able to revoke a pending invite;
 
 ### Members
 
-- [X] It should be able to get organization members;
-- [X] It should be able to update a member role;
+- [x] It should be able to get organization members;
+- [x] It should be able to update a member role;
 
 ### Projects
 
-- [X] It should be able to get projects within a organization;
-- [X] It should be able to create a new project (name, url, description);
-- [X] It should be able to update a project (name, url, description);
-- [X] It should be able to delete a project;
+- [x] It should be able to get projects within a organization;
+- [x] It should be able to create a new project (name, url, description);
+- [x] It should be able to update a project (name, url, description);
+- [x] It should be able to delete a project;
 
 ### Billing
 
-- [X] It should be able to get billing details for organization ($20 per project / $10 per member excluding billing role);
+- [x] It should be able to get billing details for organization ($20 per project / $10 per member excluding billing role);
 
 ## RBAC
 
@@ -55,22 +55,22 @@ Roles & permissions.
 
 ### Permissions table
 
-|                          | Administrator | Member | Billing | Anonymous |
-| ------------------------ | ------------- | ------ | ------- | --------- |
-| Update organization      | ✅            | ❌     | ❌      | ❌        |
-| Delete organization      | ✅            | ❌     | ❌      | ❌        |
-| Invite a member          | ✅            | ❌     | ❌      | ❌        |
-| Revoke an invite         | ✅            | ❌     | ❌      | ❌        |
-| List members             | ✅            | ✅     | ✅      | ❌        |
-| Transfer ownership       | ⚠️            | ❌     | ❌      | ❌        |
-| Update member role       | ✅            | ❌     | ❌      | ❌        |
-| Delete member            | ✅            | ⚠️     | ❌      | ❌        |
-| List projects            | ✅            | ✅     | ✅      | ❌        |
-| Create a new project     | ✅            | ✅     | ❌      | ❌        |
-| Update a project         | ✅            | ⚠️     | ❌      | ❌        |
-| Delete a project         | ✅            | ⚠️     | ❌      | ❌        |
-| Get billing details      | ✅            | ❌     | ✅      | ❌        |
-| Export billing details   | ✅            | ❌     | ✅      | ❌        |
+|                        | Administrator | Member | Billing | Anonymous |
+| ---------------------- | ------------- | ------ | ------- | --------- |
+| Update organization    | ✅            | ❌     | ❌      | ❌        |
+| Delete organization    | ✅            | ❌     | ❌      | ❌        |
+| Invite a member        | ✅            | ❌     | ❌      | ❌        |
+| Revoke an invite       | ✅            | ❌     | ❌      | ❌        |
+| List members           | ✅            | ✅     | ✅      | ❌        |
+| Transfer ownership     | ⚠️            | ❌     | ❌      | ❌        |
+| Update member role     | ✅            | ❌     | ❌      | ❌        |
+| Delete member          | ✅            | ⚠️     | ❌      | ❌        |
+| List projects          | ✅            | ✅     | ✅      | ❌        |
+| Create a new project   | ✅            | ✅     | ❌      | ❌        |
+| Update a project       | ✅            | ⚠️     | ❌      | ❌        |
+| Delete a project       | ✅            | ⚠️     | ❌      | ❌        |
+| Get billing details    | ✅            | ❌     | ✅      | ❌        |
+| Export billing details | ✅            | ❌     | ✅      | ❌        |
 
 > ✅ = allowed
 > ❌ = not allowed
